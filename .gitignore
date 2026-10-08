@@ -1,0 +1,32 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente e credenciais
+.env
+.env*.local
+.env.development
+.env.production
+!.env.example
+
+# Arquivos e pastas de IA / Assistentes
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Prisma (cliente gerado customizado, se aplicável)
+/src/generated/prisma
+
+# Sistema operacional e Editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
