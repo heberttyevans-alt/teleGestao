@@ -8,4 +8,4 @@ usuariosRouter.get('/usuarios/:id', usuariosController.buscarPorId);
 usuariosRouter.post('/usuarios', usuariosController.insert);
 usuariosRouter.post('/usuarios/login', usuariosController.login)
 
-module.exports = usuariosRouter;
+export default usuariosRouter;
