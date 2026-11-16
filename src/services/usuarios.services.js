@@ -1,8 +1,6 @@
-import { prisma } from '../prisma/prisma.js';
+import { prisma } from "../prisma.js";
 import bcrypt from "bcrypt";
-import { PrismaClient } from "../generated/prisma/client.ts";
-
-const prisma = new PrismaClient();
+import jwt from "jsonwebtoken";
 
 export const listar = async () => {
     return await prisma.usuario.findMany({
@@ -98,10 +96,19 @@ export const login = async (email, senha) => {
         throw new Error("Credenciais inválidas.");
     }
 
-    return {
+    const payload = {
         id: usuario.id,
         nome: usuario.nome,
         email: usuario.email,
         perfil: usuario.perfil,
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN || "8h",
+    });
+
+    return {
+        usuario: payload,
+        token,
     };
 };

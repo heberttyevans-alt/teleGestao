@@ -11,3 +11,13 @@ generator client {
 datasource db {
   provider = "mysql"
 }
+
+model Usuario {
+  id       Int      @id @default(autoincrement())
+  nome     String
+  email    String   @unique
+  senha    String
+  perfil   String   @default("TECNICO")
+  ativo    Boolean  @default(true)
+  criadoEm DateTime @default(now())
+}
