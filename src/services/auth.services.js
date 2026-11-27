@@ -15,11 +15,11 @@ export const login = async (email, senha) => {
         where: { email: emailLimpo },
     });
     if (!usuario || !usuario.ativo) {
-        throw criarErro("Usuário inválido ou usuário inativo.", 401);
+        throw criarErro("Credencial inválida ou usuário inativo.", 401);
     }
     const senhaValida = await bcrypt.compare(senha, usuario.senha);
     if (!senhaValida) {
-        throw criarErro("Senha inválida.", 401)
+        throw criarErro("Credencial inválida.", 401)
     }
     if (!process.env.JWT_SECRET) {
         throw criarErro("Erro interno no servidor, contate o suporte.", 500);
